@@ -11,3 +11,23 @@
   user-select: none;
   box-sizing: border-box;
 }
+
+body,
+html {
+  display: flex;
+  flex-grow: 1;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+
+  flex-grow: 1;
+}
+main > section {
+  background-color: yellow;
+  max-width: 2000px;
+  width: 100%;
+  min-width: 300px;
+  height: 100px;
+}
