@@ -1,0 +1,22 @@
+.separator {
+  margin: 40px 0;
+  border-style: solid;
+  border-width: 0;
+  height: 0;
+  border-top-width: 1.7px;
+  width: 100%;
+  color: white;
+}
+.separator.full {
+  width: 100%;
+}
+.separator.semifull {
+  width: 75%;
+}
+
+.separator.half {
+  width: 50%;
+}
+.separator.quarter {
+  width: 25%;
+}

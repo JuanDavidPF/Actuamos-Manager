@@ -4,12 +4,10 @@
 
 * {
   margin: 0;
-}
-
-.sidebar {
-  background-color: var(--primmaryColor);
-  width: 100px;
-  min-height: 300px;
-
-  height: 100vh;
+  border-style: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  box-sizing: border-box;
 }
