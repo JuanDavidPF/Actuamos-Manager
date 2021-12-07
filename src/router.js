@@ -40,6 +40,7 @@ const Router = () => {
       break;
 
     case "/404":
+      ChangeScreen(screen404);
       break;
     default:
       Redirect("/404");

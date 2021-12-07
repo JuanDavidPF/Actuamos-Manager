@@ -2,6 +2,7 @@ const homeScreen = document.querySelector(".homeScreen");
 const contentScreen = document.querySelector(".contentScreen");
 const usersScreen = document.querySelector(".usersScreen");
 const testScreen = document.querySelector(".testScreen");
+const screen404 = document.querySelector(".screen404");
 
 let currentScreen = null;
 

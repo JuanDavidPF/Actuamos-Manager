@@ -1,4 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@600&display=swap");
 :root {
+  --titleFontSize: 34px;
   --primmaryColor: #1d1449;
 }
 
@@ -22,14 +24,19 @@ main {
   display: flex;
   flex-grow: 1;
   flex-direction: column;
-  padding: 20px;
+  padding: 20px 40px;
 }
 main > section {
   margin: 20px 0;
-
   max-width: 2000px;
   min-width: 300px;
   width: 100%;
+}
+
+main > section > h1 {
+  font-size: var(--titleFontSize);
+  font-family: "Comfortaa", cursive;
+  font-weight: 600;
 }
 
 .hidden {
