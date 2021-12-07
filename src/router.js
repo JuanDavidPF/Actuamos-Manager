@@ -17,7 +17,7 @@ const AnalyzeLink = () => {
 
 const Router = () => {
   AnalyzeLink();
-  currentScreen = linkRoute;
+
   switch (linkRoute) {
     case "":
       Redirect("/home");
@@ -25,14 +25,18 @@ const Router = () => {
       break;
 
     case "/home":
+      ChangeScreen(homeScreen);
       break;
 
     case "/content":
+      ChangeScreen(contentScreen);
       break;
 
     case "/users":
+      ChangeScreen(usersScreen);
       break;
     case "/tests":
+      ChangeScreen(testScreen);
       break;
 
     case "/404":
