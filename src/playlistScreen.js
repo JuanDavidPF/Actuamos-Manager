@@ -21,6 +21,7 @@ let playlistData = {};
 const FetchPlaylist = (id) => {
   isFetching = true;
   loadingIndicator.classList.remove("hidden");
+  playListThumbnailInput.value = "";
   db.collection("Playlists")
     .doc(id)
     .get()
@@ -72,7 +73,6 @@ const SavePlaylist = async () => {
     if (playlistData.thumbnail) await DeleteThumbnail(playlistData.thumbnail);
     playlistData.thumbnail = await UploadThumbnail(thumbnailFile);
   }
-  playListThumbnailInput.value = "";
 
   await UploadPlaylist();
 
