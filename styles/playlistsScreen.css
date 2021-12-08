@@ -43,7 +43,7 @@
 #playlistScreen > .editPlayListModal > .modalPanel {
   display: flex;
   flex-direction: column;
-  padding: 50px 100px;
+  padding: 50px 10%;
   height: fit-content;
   background-color: white;
   border-radius: 20px;

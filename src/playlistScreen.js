@@ -10,9 +10,12 @@ const editPlayListModalBtn = editPlayListModal.querySelector(".closeModalBtn");
 const playListTitleInput = editPlayListModal.querySelector(
   ".modalPanel>#playlistTitleInput"
 );
+const playListThumbnailInput = editPlayListModal.querySelector(
+  ".modalPanel>#playlistThumbnailInput"
+);
 
 let isFetching = false;
-let playlistID = {};
+let playlistID = "";
 let playlistData = {};
 
 const FetchPlaylist = (id) => {
@@ -46,28 +49,82 @@ editPlayListModalBtn.addEventListener("click", () => {
   editPlayListModal.classList.add("hidden");
 });
 
-const SavePlaylist = () => {
+const SavePlaylist = async () => {
   if (isFetching) {
-    alert("Se están sincronizando datos, espere");
+    alert("Se están sincronizando datos, intente en unos segundos");
     return;
   }
-  loadingIndicator.classList.remove("hidden");
+
   const title = playListTitleInput.value;
 
   if (!title) {
     alert("Por favor ingrese un título valido");
     return;
   }
+
   playlistData.title = title;
 
   isFetching = true;
-  db.collection("Playlists")
-    .doc(playlistID)
-    .set(playlistData)
-    .then(() => {
-      isFetching = false;
-      loadingIndicator.classList.add("hidden");
-      editPlayListModal.classList.add("hidden");
-      Refresh();
-    });
+  loadingIndicator.classList.remove("hidden");
+
+  const thumbnailFile = playListThumbnailInput.files[0];
+  if (thumbnailFile) {
+    if (playlistData.thumbnail) await DeleteThumbnail(playlistData.thumbnail);
+    playlistData.thumbnail = await UploadThumbnail(thumbnailFile);
+  }
+
+  await UploadPlaylist();
+
+  isFetching = false;
+  loadingIndicator.classList.add("hidden");
+  editPlayListModal.classList.add("hidden");
+  Refresh();
+};
+
+const UploadPlaylist = () => {
+  return new Promise((resolve, reject) => {
+    db.collection("Playlists")
+      .doc(playlistID)
+      .set(playlistData)
+      .then(() => {
+        resolve();
+      })
+      .catch((err) => {
+        alert("Error:" + err.message);
+        reject(err);
+      });
+  });
+};
+
+const DeleteThumbnail = (url) => {
+  return new Promise((resolve, reject) => {
+    let pictureRef = storage.refFromURL(url);
+    pictureRef
+      .delete()
+      .then(() => {
+        resolve();
+      })
+      .catch((err) => {
+        alert(err);
+        reject();
+      });
+  });
+};
+
+const UploadThumbnail = (thumbnail) => {
+  return new Promise((resolve, reject) => {
+    storage
+      .ref()
+      .child(`Images/PlaylistsThumbnails/${thumbnail.name}`)
+      .put(thumbnail)
+      .then((snapshot) => {
+        snapshot.ref.getDownloadURL().then((url) => {
+          resolve(url);
+        });
+      })
+      .catch((err) => {
+        alert(err);
+        reject();
+      });
+  });
 };
