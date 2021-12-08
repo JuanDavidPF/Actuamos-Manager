@@ -50,7 +50,17 @@
         </div>
         <h1 class="title"></h1>
         <div class="editPlayListModal hidden">
-          <div class="modalPanel"></div>
+          <div class="modalPanel">
+            <label for="Title">Título de la playlist:</label>
+            <input
+              id="playlistTitleInput"
+              placeholder="Título"
+              name="Title"
+              type="text"
+              value=""
+            />
+            <div onclick="SavePlaylist()" class="submit">Guardar</div>
+          </div>
           <img
             class="closeModalBtn"
             src="./resources/icons/closeModal-icon.png"
@@ -69,6 +79,7 @@
     </div>
     <!--Firebase-->
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-storage-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
     <script src="./src/firebaseApp.js"></script>

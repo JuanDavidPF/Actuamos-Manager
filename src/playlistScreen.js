@@ -6,21 +6,31 @@ const editThumbnailBTN = playListCover.querySelector(".editButton");
 const editPlayListModal = playListScreen.querySelector(".editPlayListModal");
 const editPlayListModalBtn = editPlayListModal.querySelector(".closeModalBtn");
 
+//inputs
+const playListTitleInput = editPlayListModal.querySelector(
+  ".modalPanel>#playlistTitleInput"
+);
+
+let isFetching = false;
 let playlistID = {};
 let playlistData = {};
 
 const FetchPlaylist = (id) => {
+  isFetching = true;
   loadingIndicator.classList.remove("hidden");
   db.collection("Playlists")
     .doc(id)
     .get()
     .then((doc) => {
+      isFetching = false;
       loadingIndicator.classList.add("hidden");
       if (doc.exists) {
         playlistID = doc.id;
         playlistData = doc.data();
 
         playListTitle.innerHTML = doc.data().title;
+        playListTitleInput.value = doc.data().title;
+
         playListCover.style.backgroundImage = `url(${doc.data().thumbnail})`;
       } else {
         Redirect("404");
@@ -36,30 +46,28 @@ editPlayListModalBtn.addEventListener("click", () => {
   editPlayListModal.classList.add("hidden");
 });
 
-const EditTitle = (title) => {
-  db.collection("Playlists")
-    .doc(playlistID)
-    .set(
-      {
-        title: title,
-      },
-      { merge: true }
-    )
-    .then(() => {
-      playListTitle.innerHTML = title;
-    });
-};
+const SavePlaylist = () => {
+  if (isFetching) {
+    alert("Se están sincronizando datos, espere");
+    return;
+  }
+  loadingIndicator.classList.remove("hidden");
+  const title = playListTitleInput.value;
 
-const ChanchedThumbnail = (thumbnailURL) => {
+  if (!title) {
+    alert("Por favor ingrese un título valido");
+    return;
+  }
+  playlistData.title = title;
+
+  isFetching = true;
   db.collection("Playlists")
     .doc(playlistID)
-    .set(
-      {
-        title: title,
-      },
-      { merge: true }
-    )
+    .set(playlistData)
     .then(() => {
-      playListTitle.innerHTML = title;
+      isFetching = false;
+      loadingIndicator.classList.add("hidden");
+      editPlayListModal.classList.add("hidden");
+      Refresh();
     });
 };
