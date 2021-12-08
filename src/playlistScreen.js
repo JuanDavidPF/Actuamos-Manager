@@ -72,6 +72,7 @@ const SavePlaylist = async () => {
     if (playlistData.thumbnail) await DeleteThumbnail(playlistData.thumbnail);
     playlistData.thumbnail = await UploadThumbnail(thumbnailFile);
   }
+  playListThumbnailInput.value = "";
 
   await UploadPlaylist();
 
