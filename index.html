@@ -10,11 +10,11 @@
       type="image/x-icon"
     />
     <link rel="stylesheet" href="./styles/loadingIndicator.css" />
-    <link rel="stylesheet" href="./styles/styles.css" />
     <link rel="stylesheet" href="./styles/separator.css" />
     <link rel="stylesheet" href="./styles/navbar.css" />
     <link rel="stylesheet" href="./styles/contentScreen.css" />
     <link rel="stylesheet" href="./styles/playlistsScreen.css" />
+    <link rel="stylesheet" href="./styles/styles.css" />
     <title>Actuamos-Manager</title>
   </head>
   <body ondragstart="return false">
@@ -45,8 +45,17 @@
         <h1>Error 404</h1>
       </section>
       <section id="playlistScreen" class="hidden">
-        <div class="cover"></div>
+        <div class="cover">
+          <img class="editButton" src="./resources/icons/edit.icon.png" />
+        </div>
         <h1 class="title"></h1>
+        <div class="editPlayListModal hidden">
+          <div class="modalPanel"></div>
+          <img
+            class="closeModalBtn"
+            src="./resources/icons/closeModal-icon.png"
+          />
+        </div>
       </section>
     </main>
     <div

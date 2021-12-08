@@ -1,9 +1,19 @@
 #playlistScreen > .cover {
+  padding: 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
   width: 100%;
   height: 200px;
+}
+#playlistScreen > .cover > .editButton {
+  cursor: pointer;
+  background-color: white;
+  width: 60px;
+  border-radius: 50%;
 }
 
 #playlistScreen > .title {
@@ -12,4 +22,35 @@
   font-size: 40px;
   font-family: var(--lato);
   font-weight: 200;
+}
+#playlistScreen > .editPlayListModal {
+  padding: 100px 0px;
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  overflow-y: scroll;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(1, 7, 22, 0.89);
+}
+#playlistScreen > .editPlayListModal.hidden {
+  display: none;
+}
+
+#playlistScreen > .editPlayListModal > .modalPanel {
+  background-color: white;
+  border-radius: 20px;
+  height: 600px;
+  width: 70%;
+  max-width: 1200px;
+  min-width: 350px;
+
+  margin: auto;
+}
+#playlistScreen > .editPlayListModal > .closeModalBtn {
+  cursor: pointer;
+  position: absolute;
+  right: 25px;
+  top: 25px;
 }
