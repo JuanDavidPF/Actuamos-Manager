@@ -30,6 +30,7 @@ const Router = () => {
 
     case "/content":
       ChangeScreen(contentScreen);
+      FecthPlaylists();
       break;
 
     case "/users":
@@ -43,6 +44,12 @@ const Router = () => {
       ChangeScreen(screen404);
       break;
     default:
+      if (linkRoute.includes("/playlist/")) {
+        ChangeScreen(playListScreen);
+        FetchPlaylist(linkRoute.split("/playlist/")[1]);
+        return;
+      }
+
       Redirect("/404");
       break;
   } //closes Router switch

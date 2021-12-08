@@ -1,8 +1,8 @@
-const homeScreen = document.querySelector(".homeScreen");
-const contentScreen = document.querySelector(".contentScreen");
-const usersScreen = document.querySelector(".usersScreen");
-const testScreen = document.querySelector(".testScreen");
-const screen404 = document.querySelector(".screen404");
+const homeScreen = document.querySelector("#homeScreen");
+const usersScreen = document.querySelector("#usersScreen");
+const testScreen = document.querySelector("#testScreen");
+const screen404 = document.querySelector("#screen404");
+const loadingIndicator = document.querySelector("#loadingIndicator");
 
 let currentScreen = null;
 

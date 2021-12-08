@@ -1,7 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
 :root {
   --titleFontSize: 34px;
+  --subtitleFontSize: 24px;
   --primmaryColor: #1d1449;
+  --accentColor: #03cca8;
+  --secondaryColor: #84b7fb;
+  --darkSecondaryColor: #0d0439;
+  --violetColor: #383881;
+  --lightVioletColor: #6685c6;
+  --comfortaa: "Comfortaa", cursive;
+  --lato: "Lato", sans-serif;
 }
 
 * {
@@ -17,11 +26,13 @@
 body,
 html {
   display: flex;
+  justify-content: center;
   flex-grow: 1;
 }
 
 main {
   display: flex;
+  align-items: center;
   flex-grow: 1;
   flex-direction: column;
   padding: 20px 40px;
@@ -35,7 +46,7 @@ main > section {
 
 main > section > h1 {
   font-size: var(--titleFontSize);
-  font-family: "Comfortaa", cursive;
+  font-family: var(--comfortaa);
   font-weight: 600;
 }
 
