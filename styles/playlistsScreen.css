@@ -43,14 +43,22 @@
 #playlistScreen > .editPlayListModal > .modalPanel {
   display: flex;
   flex-direction: column;
-  padding: 50px 10%;
+  padding: 50px 5%;
   height: fit-content;
   background-color: white;
   border-radius: 20px;
-  width: 70%;
-  max-width: 1200px;
+  width: 90%;
+  max-width: 1000px;
   min-width: 350px;
 }
+#playlistScreen > .editPlayListModal > .modalPanel > h1 {
+  margin: 35px 0px;
+  font-size: 40px;
+  font-family: var(--lato);
+  font-weight: 200;
+  text-align: center;
+}
+
 #playlistScreen > .editPlayListModal > .modalPanel > Label {
   font-family: var(--comfortaa);
   font-size: var(--subtitleFontSize);
@@ -87,4 +95,78 @@
   position: absolute;
   right: 25px;
   top: 25px;
+}
+
+#playlistScreen > .editPlayListModal > .modalPanel > .playlistContent {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: rgba(123, 89, 216, 0.376);
+}
+#playlistScreen > .editPlayListModal > .modalPanel > .playlistContent > ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px;
+  list-style-type: none;
+  flex-wrap: wrap;
+}
+
+#playlistScreen
+  > .editPlayListModal
+  > .modalPanel
+  > .playlistContent
+  > .playlistContentContainer
+  > li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 10px 0px;
+  padding: 20px;
+
+  border-radius: 4px;
+  background-color: var(--primmaryColor);
+}
+#playlistScreen
+  > .editPlayListModal
+  > .modalPanel
+  > .playlistContent
+  > .playlistContentContainer
+  > li
+  > h2 {
+  color: white;
+  font-weight: 100;
+  font-size: var(--paragraphFontSize);
+  font-family: var(--comfortaa);
+}
+
+#playlistScreen
+  > .editPlayListModal
+  > .modalPanel
+  > .playlistContent
+  > .playlistContentContainer
+  > li
+  > img {
+  width: 20px;
+  cursor: pointer;
+}
+
+#playlistScreen
+  > .editPlayListModal
+  > .modalPanel
+  > .playlistContent
+  > .addBtn {
+  align-self: center;
+  border-radius: 30px;
+  cursor: pointer;
+  text-align: center;
+  line-height: 45px;
+  width: 45px;
+  height: 45px;
+  font-family: var(--comfortaa);
+  font-size: var(--titleFontSize);
+  color: white;
+  background-color: var(--accentColor);
 }

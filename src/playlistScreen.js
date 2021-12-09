@@ -14,14 +14,22 @@ const playListThumbnailInput = editPlayListModal.querySelector(
   ".modalPanel>#playlistThumbnailInput"
 );
 
+const playlistContentContainer = editPlayListModal.querySelector(
+  ".playlistContent>.playlistContentContainer"
+);
+
 let isFetching = false;
 let playlistID = "";
 let playlistData = {};
+let editablePlayListContent = [];
 
-const FetchPlaylist = (id) => {
+const FetchPlaylist = async (id) => {
   isFetching = true;
+  playlistContentContainer.innerHTML = "";
   loadingIndicator.classList.remove("hidden");
   playListThumbnailInput.value = "";
+  editablePlayListContent = [];
+
   db.collection("Playlists")
     .doc(id)
     .get()
@@ -35,6 +43,8 @@ const FetchPlaylist = (id) => {
         playListTitle.innerHTML = doc.data().title;
         playListTitleInput.value = doc.data().title;
 
+        if (doc.data().content) renderPlayListContent(doc.data().content);
+
         playListCover.style.backgroundImage = `url(${doc.data().thumbnail})`;
       } else {
         Redirect("404");
@@ -42,11 +52,55 @@ const FetchPlaylist = (id) => {
     });
 };
 
+const renderPlayListContent = async (contentList) => {
+  editablePlayListContent = JSON.parse(JSON.stringify(contentList));
+  playlistContentContainer.innerHTML = "";
+  for (let i = 0; i < contentList.length; i++) {
+    const contentCard = await createContentCard(contentList[i]);
+    playlistContentContainer.appendChild(contentCard);
+  }
+};
+
+const createContentCard = (contentID) => {
+  const container = document.createElement("li");
+  const name = document.createElement("h2");
+  const deleteBtn = document.createElement("img");
+
+  deleteBtn.src = "./resources/icons/closeModal-icon.png";
+
+  deleteBtn.addEventListener("click", () => {
+    const elementIndex = editablePlayListContent.findIndex(
+      (element) => element == contentID
+    );
+    if (elementIndex >= 0) {
+      editablePlayListContent.splice(elementIndex, 1);
+      container.remove();
+    }
+  });
+
+  container.appendChild(name);
+  container.appendChild(deleteBtn);
+  return new Promise((resolve, reject) => {
+    db.collection("Content")
+      .doc(contentID)
+      .get()
+      .then((doc) => {
+        name.innerText = doc.data().title;
+        resolve(container);
+      })
+      .catch((err) => {
+        alert(err);
+        reject(err);
+      });
+  });
+};
+
 editThumbnailBTN.addEventListener("click", () => {
   editPlayListModal.classList.remove("hidden");
 });
 
 editPlayListModalBtn.addEventListener("click", () => {
+  if (playlistData.content) renderPlayListContent(playlistData.content);
   editPlayListModal.classList.add("hidden");
 });
 
@@ -74,6 +128,7 @@ const SavePlaylist = async () => {
     playlistData.thumbnail = await UploadThumbnail(thumbnailFile);
   }
 
+  playlistData.content = editablePlayListContent;
   await UploadPlaylist();
 
   isFetching = false;

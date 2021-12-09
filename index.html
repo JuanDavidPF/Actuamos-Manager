@@ -51,7 +51,8 @@
         <h1 class="title"></h1>
         <div class="editPlayListModal hidden">
           <div class="modalPanel">
-            <label for="Title">Título de la playlist:</label>
+            <h1>Edición de Playlist</h1>
+            <label for="Title">Título:</label>
             <input
               id="playlistTitleInput"
               placeholder="Título"
@@ -60,15 +61,40 @@
               value=""
             />
 
-            <label for="playlistThumbnailInput"
-              >Miniatura de la playlist:</label
-            >
+            <label for="playlistThumbnailInput">Miniatura:</label>
             <input
               type="file"
               id="playlistThumbnailInput"
               name="playlistThumbnailInput"
               accept="image/*"
             />
+            <label for="playlistThumbnailInput">Contenido:</label>
+            <div class="playlistContent">
+              <ul class="playlistContentContainer">
+                <li>
+                  <h2>"asdhahsdhs"</h2>
+                  <img
+                    class="removeBtn"
+                    src="./resources/icons/closeModal-icon.png"
+                  />
+                </li>
+                <li>
+                  <h2>"asdhahsdhs"</h2>
+                  <img
+                    class="removeBtn"
+                    src="./resources/icons/closeModal-icon.png"
+                  />
+                </li>
+                <li>
+                  <h2>"asdhahsdhs"</h2>
+                  <img
+                    class="removeBtn"
+                    src="./resources/icons/closeModal-icon.png"
+                  />
+                </li>
+              </ul>
+              <div class="addBtn">+</div>
+            </div>
             <div onclick="SavePlaylist()" class="submit">Guardar</div>
           </div>
           <img
