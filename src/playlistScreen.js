@@ -18,6 +18,14 @@ const playlistContentContainer = editPlayListModal.querySelector(
   ".playlistContent>.playlistContentContainer"
 );
 
+const newPlaylistContentInput = editPlayListModal.querySelector(
+  ".playlistContent>#addContentToPlaylist"
+);
+
+const addPlaylistContentInputBtn = editPlayListModal.querySelector(
+  ".playlistContent>.addBtn"
+);
+
 let isFetching = false;
 let playlistID = "";
 let playlistData = {};
@@ -102,6 +110,40 @@ editThumbnailBTN.addEventListener("click", () => {
 editPlayListModalBtn.addEventListener("click", () => {
   if (playlistData.content) renderPlayListContent(playlistData.content);
   editPlayListModal.classList.add("hidden");
+});
+
+addPlaylistContentInputBtn.addEventListener("click", () => {
+  if (!newPlaylistContentInput.value) {
+    alert("Ingresa un ID valido");
+    return;
+  }
+
+  const isAlreadyIn =
+    editablePlayListContent.findIndex(
+      (element) => element == newPlaylistContentInput.value
+    ) >= 0;
+
+  if (isAlreadyIn) {
+    alert("El contenido ya se encuentra agregado");
+    return;
+  }
+  //fetch data
+  loadingIndicator.classList.remove("hidden");
+  db.collection("Content")
+    .doc(newPlaylistContentInput.value)
+    .get()
+    .then((doc) => {
+      loadingIndicator.classList.add("hidden");
+      if (doc.exists) {
+        editablePlayListContent.push(newPlaylistContentInput.value);
+        renderPlayListContent(editablePlayListContent);
+        newPlaylistContentInput.value = "";
+      } else {
+        alert(
+          "No se encontró contenido con el ID: " + newPlaylistContentInput.value
+        );
+      }
+    });
 });
 
 const SavePlaylist = async () => {

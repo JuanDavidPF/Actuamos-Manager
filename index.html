@@ -70,33 +70,18 @@
             />
             <label for="playlistThumbnailInput">Contenido:</label>
             <div class="playlistContent">
-              <ul class="playlistContentContainer">
-                <li>
-                  <h2>"asdhahsdhs"</h2>
-                  <img
-                    class="removeBtn"
-                    src="./resources/icons/closeModal-icon.png"
-                  />
-                </li>
-                <li>
-                  <h2>"asdhahsdhs"</h2>
-                  <img
-                    class="removeBtn"
-                    src="./resources/icons/closeModal-icon.png"
-                  />
-                </li>
-                <li>
-                  <h2>"asdhahsdhs"</h2>
-                  <img
-                    class="removeBtn"
-                    src="./resources/icons/closeModal-icon.png"
-                  />
-                </li>
-              </ul>
+              <ul class="playlistContentContainer"></ul>
+              <input
+                id="addContentToPlaylist"
+                placeholder="Ingresa el ID del contenido a agregar"
+                type="text"
+                value=""
+              />
               <div class="addBtn">+</div>
             </div>
             <div onclick="SavePlaylist()" class="submit">Guardar</div>
           </div>
+
           <img
             class="closeModalBtn"
             src="./resources/icons/closeModal-icon.png"

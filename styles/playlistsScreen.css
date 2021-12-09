@@ -153,11 +153,24 @@
   cursor: pointer;
 }
 
+#playlistScreen > .editPlayListModal > .modalPanel > .playlistContent > input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 10px 0px;
+  padding: 20px;
+  font-size: var(--paragraphFontSize);
+  font-family: var(--comfortaa);
+  border-radius: 4px;
+}
+
 #playlistScreen
   > .editPlayListModal
   > .modalPanel
   > .playlistContent
   > .addBtn {
+  margin: 20px 0px;
   align-self: center;
   border-radius: 30px;
   cursor: pointer;
